@@ -4,8 +4,9 @@
 > 感谢 JetBrains 提供的非商业开源软件开发授权。
 
 > Thanks for non-commercial open source development authorization by JetBrains。
-sudo rm /var/lib/dpkg/lock-frontend
-sudo dpkg --configure -a
+>dpkg frontend is locked by another process解决
+>sudo rm /var/lib/dpkg/lock-frontend
+>sudo dpkg --configure -a
 ### 使用说明
 * 可以直接输入命令：`idleleo` 管理脚本。
 * 访问域名 302 跳转至 https://www.idleleo.com/helloworld （了解配置过程可自行修改）。
