@@ -4,17 +4,20 @@
         "error": "/var/log/xray/error.log",
         "loglevel": "warning"
     },
-    "inbounds": [{
+    "inbounds": [
+        {
             "port": 10086,
             "listen": "127.0.0.1",
             "tag": "VLESS-ws-in",
             "protocol": "VLESS",
             "settings": {
-                "clients": [{
-                    "id": "UUID",
-                    "level": 0,
-                    "email": "me@idleleo.com"
-                }],
+                "clients": [
+                    {
+                        "id": "UUID",
+                        "level": 0,
+                        "email": "me@idleleo.com"
+                    }
+                ],
                 "decryption": "none"
             },
             "streamSettings": {
@@ -31,23 +34,28 @@
             "tag": "VLESS-gRPC-in",
             "protocol": "VLESS",
             "settings": {
-                "clients": [{
-                    "id": "UUID",
-                    "level": 0,
-                    "email": "me@idleleo.com"
-                }],
+                "clients": [
+                    {
+                        "id": "UUID",
+                        "level": 0,
+                        "email": "me@idleleo.com"
+                    }
+                ],
                 "decryption": "none"
             },
             "streamSettings": {
                 "network": "grpc",
                 "security": "none",
                 "grpcSettings": {
-                    "serviceName": "grpc"
+                    "serviceName": "grpc",
+                    "multiMode": true,
+                    "idle_timeout": 20
                 }
             }
         }
     ],
-    "outbounds": [{
+    "outbounds": [
+        {
             "protocol": "freedom",
             "tag": "direct"
         },
@@ -69,10 +77,15 @@
     },
     "routing": {
         "domainStrategy": "AsIs",
-        "rules": [{
-            "type": "field",
-            "inboundTag": ["VLESS-ws-in", "VLESS-gRPC-in"],
-            "outboundTag": "direct"
-        }]
+        "rules": [
+            {
+                "type": "field",
+                "inboundTag": [
+                    "VLESS-ws-in",
+                    "VLESS-gRPC-in"
+                ],
+                "outboundTag": "direct"
+            }
+        ]
     }
 }
